@@ -14,7 +14,6 @@
   height: clamp(60px, 8vh, 90px);
 }
 
-/*Adjust the content alignment */
 .header-container {
   position: relative;
   display: flex;
@@ -26,7 +25,6 @@
   height: 100%;
 }
 
-/*To Separate the Logo from the Nav*/
 .header-left {
   display: flex;
   align-items: center;
@@ -47,7 +45,7 @@
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
-/* Header Navigation */
+/* Navigation */
 .header-center {
   position: absolute;
   left: 50%;
@@ -110,7 +108,7 @@
   display: block;
 }
 
-/* Mobile Menu Toggle - Hidden by default */
+/* For mobile */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -134,7 +132,6 @@
   transition: all 0.3s ease;
 }
 
-/* Hamburger animation when active */
 .menu-toggle.active span:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
@@ -147,16 +144,9 @@
   transform: translateY(-9px) rotate(-45deg);
 }
 
-/*--------------------------------------------------------------------------------------------RESPONSIVE DESIGN - ENHANCED BREAKPOINTS--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------RESPONSIVE DESIGN--------------------------------------------------------------------------------------------*/
 
-/* Large Laptops & Desktops (1200px and above) - Your baseline design */
-@media (min-width: 1200px) {
-  .header-container {
-    max-width: 1400px;
-  }
-}
-
-/* Standard Laptops & Small Desktops (992px - 1199px) */
+/* Standard Laptops */
 @media (max-width: 1199px) {
   .header-container {
     padding: 0 2vw;
@@ -172,7 +162,7 @@
   }
 }
 
-/* Tablets Landscape (768px - 991px) */
+/* Tablets */
 @media (max-width: 991px) {
   .header {
     height: clamp(55px, 7vh, 70px);
@@ -205,7 +195,6 @@
   }
 }
 
-/* Tablets Portrait & Large Phones (576px - 767px) */
 @media (max-width: 767px) {
   .header {
     height: auto;
@@ -270,29 +259,29 @@
     order: 3;
     margin-left: 15px;
   }
+
+
+  .cart-text {
+    display: none;
+  }
+
+  .overlay.active {
+    width: 100vw;
+  }
+
+  .overlay-content {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .submit-btn {
+    width: 25vw;
+    font-size: 16px;
+    padding: 10px;
+  }
 }
 
-.cart-text {
-  display: none;
-}
-
-.overlay.active {
-  width: 100vw;
-}
-
-.overlay-content {
-  height: 100%;
-  overflow-y: auto;
-}
-
-.submit-btn {
-  width: 25vw;
-  font-size: 16px;
-  padding: 10px;
-}
-
-
-/* Mobile Phones (480px - 575px) */
+/* Mobile Phones */
 @media (max-width: 575px) {
   .header-container {
     padding: 6px 5vw;
@@ -300,7 +289,6 @@
 
   .header-left p {
     display: none;
-    /* Hide tagline on very small screens */
   }
 
   .logo {
@@ -314,11 +302,12 @@
   }
 
   .overlay.active {
-    width: 90vw;
+    width: 100vw;
   }
 
   .overlay-content {
     padding: 1.5rem 1rem;
+    padding-right: 1.5rem;
   }
 
   .submit-btn {
@@ -346,7 +335,7 @@
   }
 }
 
-/* Small Mobile Phones (320px - 479px) */
+/* Phones  */
 @media (max-width: 479px) {
   .header {
     min-height: 55px;
@@ -393,7 +382,7 @@
   }
 }
 
-/*--------------------------------------------------------------------------------------------FOOTER - RESPONSIVE ENHANCEMENTS--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------FOOTER---------------------------------------------------------------------------------------------*/
 
 .site-footer {
   background: #5f452f;
@@ -452,7 +441,6 @@
   color: #ddd;
 }
 
-/* Footer responsive adjustments */
 @media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
@@ -470,7 +458,7 @@
   }
 }
 
-/*--------------------------------------------------------------------------------------------CART & OVERLAY RESPONSIVE--------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------CART & LIST--------------------------------------------------------------------------------------------*/
 
 .overlay {
   position: fixed;
@@ -503,7 +491,7 @@
   }
 }
 
-/* Rest of your existing CSS remains the same... */
+
 .cart {
   padding: 1rem;
 }

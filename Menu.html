@@ -41,7 +41,6 @@
     align-items: stretch;
   }
 
-  /* The boxes */
   .storehour-box {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(6px);
@@ -150,26 +149,29 @@
     margin: clamp(1rem, 3vw, 2rem) auto;
   }
 
-  /* === ENHANCED RESPONSIVE DESIGN === */
+  /*-----------------------------------------RESPONSIVE DEISGN-----------------------------------------*/
 
-  /* Large Desktops (1400px+) */
+  /* Large Desktops */
   @media (min-width: 1400px) {
     .storehours-wrapper {
       grid-template-columns: repeat(4, 1fr);
+      /* more effective to make it as a child */
     }
   }
 
-  /* Standard Laptops (1200px - 1399px) */
+  /* Standard Laptops */
   @media (min-width: 1200px) {
     .storehours-wrapper {
       grid-template-columns: repeat(4, 1fr);
+      /* more effective to make it as a child */
     }
   }
 
-  /* Large Tablets & Small Laptops (992px - 1199px) */
+  /* Large Tablets & Small Laptops */
   @media (max-width: 1199px) and (min-width: 992px) {
     .storehours-wrapper {
       grid-template-columns: repeat(4, 1fr);
+      /* more effective to make it as a child */
     }
 
     .sidebar {
@@ -182,7 +184,7 @@
     }
   }
 
-  /* Tablets (768px - 991px) */
+  /* Tablets */
   @media (max-width: 991px) and (min-width: 768px) {
     .storehours-wrapper {
       grid-template-columns: repeat(3, 1fr);
@@ -207,7 +209,7 @@
     }
   }
 
-  /* Large Mobile & Small Tablets (600px - 767px) */
+  /* Large Mobile & Small Tablets */
   @media (max-width: 767px) and (min-width: 600px) {
     .storehours-wrapper {
       grid-template-columns: repeat(2, 1fr);
@@ -251,7 +253,7 @@
     }
   }
 
-  /* Mobile Phones (480px - 599px) */
+  /* Mobile Phones */
   @media (max-width: 599px) and (min-width: 480px) {
     .storehours-wrapper {
       grid-template-columns: repeat(2, 1fr);
@@ -309,7 +311,7 @@
     }
   }
 
-  /* Small Mobile Phones (320px - 479px) */
+  /* Small Mobile Phones */
   @media (max-width: 479px) {
     .main-container {
       margin-top: clamp(50px, 7vh, 70px);
@@ -373,7 +375,7 @@
     }
   }
 
-  /* Tiny screens (≤320px) */
+  /* very screens for the sake of my <iframe> */
   @media (max-width: 320px) {
     .main-container {
       padding: 0.8rem 0.5rem;
@@ -389,7 +391,7 @@
     }
   }
 
-  /* Touch device optimizations */
+  /* touchy better */
   @media (hover: none) and (pointer: coarse) {
     .sidebar button:hover {
       transform: none;
@@ -405,14 +407,14 @@
     }
   }
 
-  /* High-resolution displays */
+  /* image renderer */
   @media (min-resolution: 192dpi) {
     .storehour-box {
       image-rendering: -webkit-optimize-contrast;
     }
   }
 
-  /* Mobile menu specific styles */
+
   @media (max-width: 767px) {
 
     .header-center {
@@ -452,10 +454,10 @@
     }
   }
 
-  /* Cart overlay mobile optimizations */
+
   @media (max-width: 767px) {
     .overlay.active {
-      width: 100vw !important;
+      width: 100vw;
       height: 100vh;
     }
 
@@ -464,7 +466,7 @@
     }
 
     .submit-btn {
-      width: 60vw !important;
+      width: 60vw;
       font-size: 1rem;
       padding: 0.8rem;
     }
@@ -480,7 +482,6 @@
         <p id="side-title">Nano Café</p>
       </div>
 
-      <!-- Updated Hamburger Menu -->
       <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">
         <span></span>
         <span></span>
@@ -537,7 +538,6 @@
           <h3>Receipts</h3>
         </div>
         <div id="receipts" class="receipts">
-          <!-- JS will inject receipt entries here -->
         </div>
       </div>
     </div>
@@ -627,14 +627,23 @@
   <script>
     function loadPage(page) {
       const frame = document.getElementById("contentFrame");
-      frame.src = "";
-      setTimeout(() => {
-        frame.src = page;
-      }, 100);
+      frame.src = page; // Directly set the source
+
+      // Update active button state
+      const buttons = document.querySelectorAll('.sidebar button');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick')?.includes(page)) {
+          btn.classList.add('active');
+        }
+      });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Highlight active sidebar button - KEEP THIS
+      // Load default page on startup
+      loadPage('menu_info.html');
+
+      // Set up button click handlers
       const buttons = document.querySelectorAll('.sidebar button');
       buttons.forEach(btn => {
         btn.addEventListener('click', function () {
@@ -643,7 +652,7 @@
         });
       });
 
-      // Highlight current day on store hours - KEEP THIS
+      // Store hours highlighting
       const boxes = document.querySelectorAll(".storehour-box");
       const today = new Date().getDay();
       if (boxes[today]) boxes[today].classList.add("active");

@@ -9,7 +9,6 @@
   <script src="script.js" defer></script>
   <title>Nano Website</title>
   <style>
-    /* === Base Layout === */
     .wrapper {
       display: flex;
       flex-direction: column;
@@ -41,7 +40,7 @@
       filter: brightness(0.7);
     }
 
-    /* === Section Below Hero === */
+    /* -------------------------------------MAIN CONTENT------------------------------------------- */
     .below-content {
       display: block;
       background-color: beige;
@@ -57,7 +56,6 @@
       font-weight: bolder;
     }
 
-    /* === Product Grid === */
     .container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -125,7 +123,6 @@
       background-color: #a1794e;
     }
 
-    /* === Events Section === */
     .events {
       text-align: center;
       padding: clamp(80px, 15vh, 160px) 20px;
@@ -178,7 +175,6 @@
       background: linear-gradient(135deg, #8e633c, #b87c4a);
     }
 
-    /* --- Hidden Details --- */
     .event-details {
       max-height: 0;
       overflow: hidden;
@@ -212,7 +208,6 @@
       font-size: clamp(0.8rem, 1vw, 0.9rem);
     }
 
-    /* --- Button --- */
     .book-btn {
       background: #b87c4a;
       color: #fffaf6;
@@ -230,7 +225,6 @@
       background: #8e633c;
     }
 
-    /* === Contact / Form === */
     .form {
       background: linear-gradient(to bottom, #cfae90 30%, #977a5f 60%, #5f452f 100%);
       padding: clamp(40px, 8vh, 60px) clamp(15px, 3vw, 20px) clamp(60px, 10vh, 80px);
@@ -302,21 +296,9 @@
       transform: translateY(-1px);
     }
 
-    /* === ENHANCED RESPONSIVE DESIGN === */
+    /*-----------------------------------------RESPONSIVE DEISGN-----------------------------------------*/
 
-    /* Large Desktops (1400px+) - Enhanced baseline */
-    @media (min-width: 1400px) {
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .events-container {
-        max-width: 1000px;
-      }
-    }
-
-    /* Standard Laptops (1024px - 1399px) */
+    /* Standard Laptops */
     @media (max-width: 1199px) {
       .center-video {
         height: 92%;
@@ -328,7 +310,7 @@
       }
     }
 
-    /* Tablets Landscape (768px - 1023px) */
+    /* Tablets Landscape */
     @media (max-width: 1023px) {
       .center {
         height: 80vh;
@@ -353,7 +335,6 @@
       }
     }
 
-    /* Tablets Portrait & Large Phones (576px - 767px) */
     @media (max-width: 767px) {
       .center {
         height: 70vh;
@@ -400,14 +381,13 @@
         font-size: 1.6rem;
       }
 
-      /* Gradient separator adjustment for mobile */
       hr {
         height: 4vh;
         margin-top: -30px;
       }
     }
 
-    /* Mobile Phones (480px - 575px) */
+    /* Mobile Phones */
     @media (max-width: 575px) {
       .center {
         height: 60vh;
@@ -459,7 +439,7 @@
       }
     }
 
-    /* Small Mobile Phones (320px - 479px) */
+    /* Small Mobile Phones */
     @media (max-width: 479px) {
       .center {
         height: 50vh;
@@ -558,7 +538,7 @@
       }
     }
 
-    /* Touch device optimizations */
+    /* touchy touchy better */
     @media (hover: none) and (pointer: coarse) {
       .event-card:hover {
         transform: none;
@@ -575,7 +555,6 @@
       }
     }
 
-    /* High-resolution displays */
     @media (min-resolution: 192dpi) {
       .product img {
         image-rendering: -webkit-optimize-contrast;

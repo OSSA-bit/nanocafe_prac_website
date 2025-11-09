@@ -583,27 +583,38 @@
 
 
   <script>
-    // Hide all sections first
-    document.querySelectorAll('.page-section').forEach(section => section.style.display = 'none');
+    // Show the correct section based on URL parameters
+    function showSection() {
+      // Hide all sections first
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.style.display = 'none';
+      });
 
-    // Get hash from URL (ex: #hot)
-    const hash = window.location.hash.substring(1);
-    const activeSection = document.getElementById(hash);
+      // Get section from URL parameters or hash
+      const urlParams = new URLSearchParams(window.location.search);
+      const sectionName = urlParams.get('section') || window.location.hash.substring(1);
 
-    // Show section if hash matches, else default to #special
-    if (activeSection) {
-      activeSection.style.display = 'block';
-    } else {
-      document.getElementById('special').style.display = 'block';
+      const activeSection = document.getElementById(sectionName);
+
+      // Show section if found, else default to 'special'
+      if (activeSection) {
+        activeSection.style.display = 'block';
+      } else {
+        document.getElementById('special').style.display = 'block';
+      }
     }
 
-    // Add-to-cart system — minimalistic + automatic
+    // Call on load and when hash changes [a.k.a clicking]
+    document.addEventListener('DOMContentLoaded', showSection);
+    window.addEventListener('hashchange', showSection);
+
+    // Add-to-cart system
     document.querySelectorAll('.price-btn').forEach(button => {
       button.addEventListener('click', () => {
         const itemName = button.previousElementSibling.textContent.trim();
         const itemPrice = button.textContent.trim();
 
-        // send to parent (main page)
+        // Send to parent (main page)
         window.parent.postMessage(
           {
             type: 'add-to-cart',
@@ -615,7 +626,7 @@
           '*'
         );
 
-        // tiny feedback (optional)
+        // Visual feedback
         button.style.transform = 'scale(0.9)';
         setTimeout(() => (button.style.transform = ''), 150);
       });

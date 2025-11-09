@@ -1,4 +1,4 @@
-// Global function for iframe navigation
+// Order from Menu can stay anywhere
 function loadPage(page) {
   const frame = document.getElementById('contentFrame');
   if (frame) {
@@ -6,7 +6,7 @@ function loadPage(page) {
   }
 }
 
-// Shared Cart System (works across all pages)
+// Cart to work all pages
 const initCartSystem = () => {
   const cartState = {
     items: JSON.parse(localStorage.getItem('cartItems')) || [],
@@ -59,7 +59,7 @@ const initCartSystem = () => {
     });
   };
 
-  // Cross-page communication for cart additions
+  // Works on Online and Local host
   const setupMessageListener = () => {
     const allowedOrigins = [
       window.location.origin,
@@ -86,7 +86,7 @@ const initCartSystem = () => {
     });
   };
 
-  // Delivery location handler
+  // Delivery location 
   const setupLocationHandler = () => {
     if (elements.location) {
       elements.location.addEventListener("change", (e) => {
@@ -99,7 +99,7 @@ const initCartSystem = () => {
     }
   };
 
-  // Render cart function
+  // cart system
   const renderCart = () => {
     if (!elements.cartList) return;
 
@@ -131,7 +131,7 @@ const initCartSystem = () => {
     }
   };
 
-  // Quantity adjustment handler
+  // Quantity adjuster
   const setupQuantityHandlers = () => {
     if (elements.cartList) {
       elements.cartList.addEventListener('click', (e) => {
@@ -158,7 +158,7 @@ const initCartSystem = () => {
     renderCart();
   };
 
-  // Order submission handler
+  // Order + receipt
   const setupOrderHandler = () => {
     if (!elements.orderBtn) return;
 
@@ -177,7 +177,7 @@ const initCartSystem = () => {
       const total = cartState.items.reduce((sum, item) => sum + item.priceValue * item.qty, 0);
       const grandTotal = total + cartState.deliveryFee;
 
-      // Create receipt
+      // Receipt
       const receipt = document.createElement("div");
       receipt.classList.add("receipt-entry");
       receipt.innerHTML = `
@@ -208,7 +208,7 @@ const initCartSystem = () => {
         toggleBtn.textContent = hidden ? "Hide Details" : "Show Details";
       });
 
-      // Clear cart and reset state
+      // After order, make lsit empty
       cartState.items = [];
       cartState.deliveryFee = 0;
       cartState.location = '0';
@@ -238,7 +238,7 @@ const initCartSystem = () => {
   renderCart(); // Initial render
 };
 
-  // Enhanced mobile menu toggle for this page
+  // for mobile toggle
   document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.querySelector('.menu-toggle');
     const headerCenter = document.querySelector('.header-center');
@@ -259,7 +259,6 @@ const initCartSystem = () => {
         }
       });
 
-      // Handle dropdown clicks on mobile
       if (dropBtn && dropdown) {
         dropBtn.addEventListener('click', function (e) {
           if (window.innerWidth <= 992) {
